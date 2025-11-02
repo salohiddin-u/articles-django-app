@@ -25,5 +25,8 @@ from articles.views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', index),
-    path('<int:a>/', article)
+    path('unread/', articles_unread),
+    path('read/', articles_read),
+    path('<int:a>/', article),
+    path('<int:b>/mark-as-read/', mark_as_read),
 ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
