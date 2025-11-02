@@ -8,6 +8,18 @@
       <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
       <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.4.13/dist/tailwind.min.css" rel="stylesheet">
        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+       <script>
+  // Apply dark mode immediately before paint
+  if (
+    localStorage.getItem('color-theme') === 'dark' ||
+    (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
+  ) {
+    document.documentElement.classList.add('dark');
+  } else {
+    document.documentElement.classList.remove('dark');
+  }
+</script>
+
    </head>
    <body
     class="bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 min-h-screen selection:bg-blue-600 selection:text-white"
@@ -42,6 +54,25 @@
 
       </div>
  <main class="max-w-3xl mx-auto px-4 pb-16">
+<div class="flex justify-between items-center mb-8">
+  <!-- Main Menu (Left) -->
+  <a href="/"
+     class="inline-flex items-center px-5 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg
+            hover:bg-gray-100 hover:text-blue-700
+            dark:bg-gray-800 dark:text-gray-300 dark:border-gray-700 dark:hover:bg-gray-700 transition">
+    <i class="fa-solid fa-house mr-2"></i>
+    Main Menu
+  </a>
+
+  <!-- Mark as Read (Right) -->
+  <a href="/{{article.id}}/mark-as-read/" id="read-btn"
+     class="inline-flex items-center px-6 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg
+            hover:bg-blue-700 focus:ring-4 focus:ring-blue-300
+            dark:bg-blue-500 dark:hover:bg-blue-600 dark:focus:ring-blue-800 transition">
+    <i class="fa-regular fa-bookmark mr-2"></i>
+    <span id="read-btn-text">Mark as Read</span>
+  </a>
+</div>
       <article class="space-y-6">
         <!-- Title -->
         <h1 class="text-4xl font-bold tracking-tight">{{ article.title }}</h1>
@@ -52,11 +83,13 @@
         </div>
 
         <!-- Cover Image -->
-        <img
+        {% if article.image %}
+          <img
           src="{{ article.image.url }}"
           alt="{{ article.title }}"
           class="w-full rounded-lg shadow-sm border border-gray-200 dark:border-gray-800"
         />
+          {% endif %}
 
         <!-- Summary -->
         <p class="text-lg text-gray-700 dark:text-gray-400 leading-relaxed">
@@ -71,6 +104,26 @@
 </p>
         </div>
       </article>
+     <!-- Navigation Buttons -->
+<div class="flex justify-between items-center mt-12">
+<!-- Previous Button -->
+{% if article.id > 1 %}
+<a href="/{{ article.id|add:-1 }}/"
+   class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-blue-700 dark:bg-gray-800 dark:text-gray-300 dark:border-gray-700 dark:hover:bg-gray-700">
+  <i class="fa-solid fa-arrow-left mr-2"></i>
+  Previous
+</a>
+{% endif %}
+
+<!-- Next Button -->
+<a href="/{{ article.id|add:1 }}/"
+   class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-blue-700 dark:bg-gray-800 dark:text-gray-300 dark:border-gray-700 dark:hover:bg-gray-700">
+  Next
+  <i class="fa-solid fa-arrow-right ml-2"></i>
+</a>
+
+</div>
+
     </main>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
       <script>
