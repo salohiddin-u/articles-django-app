@@ -1,24 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
    <head>
+  <script>
+    // ⚡ Runs before any paint
+    (() => {
+      try {
+        const theme = localStorage.getItem('color-theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const useDark = theme === 'dark' || (!theme && prefersDark);
+
+        if (useDark) {
+          document.documentElement.classList.add('dark');
+        } else {
+          document.documentElement.classList.remove('dark');
+        }
+
+        // Optional: prevent flicker by hiding body until CSS applies
+        document.documentElement.style.visibility = 'hidden';
+        window.addEventListener('DOMContentLoaded', () => {
+          document.documentElement.style.visibility = '';
+        });
+      } catch (e) {}
+    })();
+  </script>
+<script>
+  tailwind.config = { darkMode: 'class' };
+</script>
+
+
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <title>Articles</title>
+
       <script src="https://cdn.tailwindcss.com"></script>
       <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
       <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.4.13/dist/tailwind.min.css" rel="stylesheet">
        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-       <script>
-  // Apply dark mode immediately before paint
-  if (
-    localStorage.getItem('color-theme') === 'dark' ||
-    (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
-  ) {
-    document.documentElement.classList.add('dark');
-  } else {
-    document.documentElement.classList.remove('dark');
-  }
-</script>
+
 
    </head>
    <body
@@ -126,6 +144,59 @@
   </a>
   {% endfor %}
 </main>
+      <div id="pagination" class="flex justify-center mt-10 space-x-2"></div><br><br>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const articles = Array.from(document.querySelectorAll(".article-item"));
+  const paginationContainer = document.getElementById("pagination");
+  const itemsPerPage = 10;
+  let currentPage = 1;
+  const totalPages = Math.ceil(articles.length / itemsPerPage);
+
+  // Function to show articles of the current page
+  function showPage(page) {
+    // Hide all articles
+    articles.forEach((article, i) => {
+      article.style.display = "none";
+    });
+
+    // Show only the articles for this page
+    const start = (page - 1) * itemsPerPage;
+    const end = start + itemsPerPage;
+    articles.slice(start, end).forEach(article => {
+      article.style.display = "block";
+    });
+
+    // Update pagination UI
+    updatePagination(page);
+  }
+
+  // Function to create pagination buttons
+  function updatePagination(page) {
+    paginationContainer.innerHTML = "";
+
+    for (let i = 1; i <= totalPages; i++) {
+      const btn = document.createElement("button");
+      btn.textContent = i;
+      btn.className = `px-3 py-1 rounded-lg border text-sm font-medium transition
+        ${i === page
+          ? 'bg-blue-600 text-white border-blue-600'
+          : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-100 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700'}`;
+
+      btn.addEventListener("click", () => {
+        currentPage = i;
+        showPage(currentPage);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+
+      paginationContainer.appendChild(btn);
+    }
+  }
+
+  // Initialize
+  showPage(currentPage);
+});
+</script>
 
       <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
       <script>

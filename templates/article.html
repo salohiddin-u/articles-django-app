@@ -1,6 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
    <head>
+  <script>
+    // ⚡ Runs before any paint
+    (() => {
+      try {
+        const theme = localStorage.getItem('color-theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const useDark = theme === 'dark' || (!theme && prefersDark);
+
+        if (useDark) {
+          document.documentElement.classList.add('dark');
+        } else {
+          document.documentElement.classList.remove('dark');
+        }
+
+        // Optional: prevent flicker by hiding body until CSS applies
+        document.documentElement.style.visibility = 'hidden';
+        window.addEventListener('DOMContentLoaded', () => {
+          document.documentElement.style.visibility = '';
+        });
+      } catch (e) {}
+    })();
+  </script>
+<script>
+  tailwind.config = { darkMode: 'class' };
+</script>
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <title>Articles</title>
@@ -8,17 +33,6 @@
       <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
       <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.4.13/dist/tailwind.min.css" rel="stylesheet">
        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-       <script>
-  // Apply dark mode immediately before paint
-  if (
-    localStorage.getItem('color-theme') === 'dark' ||
-    (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
-  ) {
-    document.documentElement.classList.add('dark');
-  } else {
-    document.documentElement.classList.remove('dark');
-  }
-</script>
 
    </head>
    <body
