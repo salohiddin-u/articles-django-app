@@ -20,6 +20,10 @@ from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
 
+from articles.views import *
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', index),
+    path('<int:a>/', article)
 ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
