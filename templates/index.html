@@ -1,203 +1,187 @@
 <!DOCTYPE html>
 <html lang="en">
    <head>
-  <script>
-    // ⚡ Runs before any paint
-    (() => {
-      try {
-        const theme = localStorage.getItem('color-theme');
-        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        const useDark = theme === 'dark' || (!theme && prefersDark);
+      <script>
+         // ⚡ Runs before any paint
+         (() => {
+           try {
+             const theme = localStorage.getItem('color-theme');
+             const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+             const useDark = theme === 'dark' || (!theme && prefersDark);
 
-        if (useDark) {
-          document.documentElement.classList.add('dark');
-        } else {
-          document.documentElement.classList.remove('dark');
-        }
+             if (useDark) {
+               document.documentElement.classList.add('dark');
+             } else {
+               document.documentElement.classList.remove('dark');
+             }
 
-        // Optional: prevent flicker by hiding body until CSS applies
-        document.documentElement.style.visibility = 'hidden';
-        window.addEventListener('DOMContentLoaded', () => {
-          document.documentElement.style.visibility = '';
-        });
-      } catch (e) {}
-    })();
-  </script>
-<script>
-  tailwind.config = { darkMode: 'class' };
-</script>
-
-
+             // Optional: prevent flicker by hiding body until CSS applies
+             document.documentElement.style.visibility = 'hidden';
+             window.addEventListener('DOMContentLoaded', () => {
+               document.documentElement.style.visibility = '';
+             });
+           } catch (e) {}
+         })();
+      </script>
+      <script>
+         tailwind.config = { darkMode: 'class' };
+      </script>
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <title>Articles</title>
-
       <script src="https://cdn.tailwindcss.com"></script>
       <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
       <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.4.13/dist/tailwind.min.css" rel="stylesheet">
-       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-
-
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
    </head>
    <body
-    class="bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 min-h-screen selection:bg-blue-600 selection:text-white"
-  >
-      <div class="antialiased bg-gray-100 dark:bg-gray-900">
-    <header class="border-b border-gray-200 dark:border-gray-800 py-6 mb-8">
-      <div
-        class="max-w-3xl mx-auto px-4 flex justify-between items-center"
+      class="bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 min-h-screen selection:bg-blue-600 selection:text-white"
       >
-        <h1 class="text-2xl font-semibold"><a href="/">Articles</a></h1>
-
-        <button id="theme-toggle" type="button" class="p-2 ml-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-600 dark:text-gray-300">
-                     <!-- Sun (light) -->
-                     <svg id="theme-toggle-light-icon" class="hidden w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun">
-                        <circle cx="12" cy="12" r="5"></circle>
-                        <line x1="12" y1="1" x2="12" y2="3"></line>
-                        <line x1="12" y1="21" x2="12" y2="23"></line>
-                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                        <line x1="1" y1="12" x2="3" y2="12"></line>
-                        <line x1="21" y1="12" x2="23" y2="12"></line>
-                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-                     </svg>
-                     <!-- Moon (dark) -->
-                     <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
-                        <path fill-rule="evenodd" d="M17.293 13.293a8 8 0 11-10.586-10.586 8.001 8.001 0 0010.586 10.586z" clip-rule="evenodd"/>
-                     </svg>
-                  </button>
-      </div>
-    </header>
-
+      <div class="antialiased bg-gray-100 dark:bg-gray-900">
+         <header class="border-b border-gray-200 dark:border-gray-800 py-6 mb-8">
+            <div
+               class="max-w-3xl mx-auto px-4 flex justify-between items-center"
+               >
+               <h1 class="text-2xl font-semibold"><a href="/">Articles</a></h1>
+               <button id="theme-toggle" type="button" class="p-2 ml-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-600 dark:text-gray-300">
+                  <!-- Sun (light) -->
+                  <svg id="theme-toggle-light-icon" class="hidden w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun">
+                     <circle cx="12" cy="12" r="5"></circle>
+                     <line x1="12" y1="1" x2="12" y2="3"></line>
+                     <line x1="12" y1="21" x2="12" y2="23"></line>
+                     <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                     <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                     <line x1="1" y1="12" x2="3" y2="12"></line>
+                     <line x1="21" y1="12" x2="23" y2="12"></line>
+                     <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                     <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                  </svg>
+                  <!-- Moon (dark) -->
+                  <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                     <path fill-rule="evenodd" d="M17.293 13.293a8 8 0 11-10.586-10.586 8.001 8.001 0 0010.586 10.586z" clip-rule="evenodd"/>
+                  </svg>
+               </button>
+            </div>
+         </header>
       </div>
       <!-- Category Filter -->
-<div class="max-w-3xl mx-auto px-4 mb-6">
-  <div class="flex flex-wrap gap-2 justify-center">
-<a href="/" data-filter="all"
-  class="filter-btn px-4 py-2 text-sm font-medium rounded-lg border
-  {% if request.path == '/' %}
-    bg-blue-600 text-white border-blue-600
-  {% else %}
-    bg-white text-gray-700 hover:bg-gray-100 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700 border-gray-300
-  {% endif %}">
-  All
-</a>
-
-<a href="/unread/" data-filter="unread"
-  class="filter-btn px-4 py-2 text-sm font-medium rounded-lg border
-  {% if request.path == '/unread/' %}
-    bg-blue-600 text-white border-blue-600
-  {% else %}
-    bg-white text-gray-700 hover:bg-gray-100 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700
-  {% endif %}">
-  Unread
-</a>
-
-<a href="/read/" data-filter="read"
-  class="filter-btn px-4 py-2 text-sm font-medium rounded-lg border
-  {% if request.path == '/read/' %}
-    bg-blue-600 text-white border-blue-600
-  {% else %}
-    bg-white text-gray-700 hover:bg-gray-100 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700
-  {% endif %}">
-  Read
-</a>
-
-  </div>
-</div>
-
-<main class="max-w-3xl mx-auto px-4 space-y-6">
-  {% for i in articles %}
-  <a href="/{{ i.id }}/"
-     data-id="{{ i.id }}"
-     class="article-item block p-5 border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition relative">
-
-    <!-- Title -->
-    <h2 class="text-xl font-semibold mb-1">{{ i.title }}</h2>
-
-    <!-- Summary -->
-    <p class="text-gray-600 dark:text-gray-400 text-sm">
-      {{ i.summary|linebreaksbr }}
-    </p>
-
-    <!-- Metadata -->
-    <div class="flex justify-between items-center mt-4">
-      <div class="text-xs text-gray-500 dark:text-gray-400">
-        Article ID {{ i.id }}
+      <div class="max-w-3xl mx-auto px-4 mb-6">
+         <div class="flex flex-wrap gap-2 justify-center">
+            <a href="/" data-filter="all"
+               class="filter-btn px-4 py-2 text-sm font-medium rounded-lg border
+               {% if request.path == '/' %}
+               bg-blue-600 text-white border-blue-600
+               {% else %}
+               bg-white text-gray-700 hover:bg-gray-100 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700 border-gray-300
+               {% endif %}">
+            All
+            </a>
+            <a href="/unread/" data-filter="unread"
+               class="filter-btn px-4 py-2 text-sm font-medium rounded-lg border
+               {% if request.path == '/unread/' %}
+               bg-blue-600 text-white border-blue-600
+               {% else %}
+               bg-white text-gray-700 hover:bg-gray-100 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700
+               {% endif %}">
+            Unread
+            </a>
+            <a href="/read/" data-filter="read"
+               class="filter-btn px-4 py-2 text-sm font-medium rounded-lg border
+               {% if request.path == '/read/' %}
+               bg-blue-600 text-white border-blue-600
+               {% else %}
+               bg-white text-gray-700 hover:bg-gray-100 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700
+               {% endif %}">
+            Read
+            </a>
+         </div>
       </div>
+      <main class="max-w-3xl mx-auto px-4 space-y-6">
+         {% for i in articles %}
+         <a href="/{{ i.id }}/"
+            data-id="{{ i.id }}"
+            class="article-item block p-5 border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition relative">
+            <!-- Title -->
+            <h2 class="text-xl font-semibold mb-1">{{ i.title }}</h2>
+            <!-- Summary -->
+            <p class="text-gray-600 dark:text-gray-400 text-sm">
+               {{ i.summary|linebreaksbr }}
+            </p>
+            <!-- Metadata -->
+            <div class="flex justify-between items-center mt-4">
+               <div class="text-xs text-gray-500 dark:text-gray-400">
+                  Article ID {{ i.id }}
+               </div>
+               <!-- Status badge -->
+               {% if i.status == True %}
+               <span class="status-badge bg-blue-600 inline-flex items-center text-xs font-medium px-2 py-1 rounded-full border border-gray-300 text-slate-50 dark:border-gray-600 dark:text-gray-300">
+               <i class="fa-regular fa-bookmark mr-1"></i>
+               Read
+               </span>
+               {% else %}
+               <span class="status-badge inline-flex items-center text-xs font-medium px-2 py-1 rounded-full border border-gray-300 text-gray-600 dark:border-gray-600 dark:text-gray-300">
+               <i class="fa-regular fa-bookmark mr-1"></i>
+               Unread
+               </span>
+               {% endif %}
+            </div>
+         </a>
+         {% endfor %}
+      </main>
+      <div id="pagination" class="flex justify-center mt-10 space-x-2"></div>
+      <br><br>
+      <script>
+         document.addEventListener("DOMContentLoaded", () => {
+           const articles = Array.from(document.querySelectorAll(".article-item"));
+           const paginationContainer = document.getElementById("pagination");
+           const itemsPerPage = 10;
+           let currentPage = 1;
+           const totalPages = Math.ceil(articles.length / itemsPerPage);
 
-      <!-- Status badge -->
-        {% if i.status == True %}
-      <span class="status-badge bg-blue-600 inline-flex items-center text-xs font-medium px-2 py-1 rounded-full border border-gray-300 text-slate-50 dark:border-gray-600 dark:text-gray-300">
-        <i class="fa-regular fa-bookmark mr-1"></i>
-        Read
-      </span>
-        {% else %}
-        <span class="status-badge inline-flex items-center text-xs font-medium px-2 py-1 rounded-full border border-gray-300 text-gray-600 dark:border-gray-600 dark:text-gray-300">
-        <i class="fa-regular fa-bookmark mr-1"></i>
-        Unread
-      </span>
-        {% endif %}
-    </div>
+           // Function to show articles of the current page
+           function showPage(page) {
+             // Hide all articles
+             articles.forEach((article, i) => {
+               article.style.display = "none";
+             });
 
-  </a>
-  {% endfor %}
-</main>
-      <div id="pagination" class="flex justify-center mt-10 space-x-2"></div><br><br>
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-  const articles = Array.from(document.querySelectorAll(".article-item"));
-  const paginationContainer = document.getElementById("pagination");
-  const itemsPerPage = 10;
-  let currentPage = 1;
-  const totalPages = Math.ceil(articles.length / itemsPerPage);
+             // Show only the articles for this page
+             const start = (page - 1) * itemsPerPage;
+             const end = start + itemsPerPage;
+             articles.slice(start, end).forEach(article => {
+               article.style.display = "block";
+             });
 
-  // Function to show articles of the current page
-  function showPage(page) {
-    // Hide all articles
-    articles.forEach((article, i) => {
-      article.style.display = "none";
-    });
+             // Update pagination UI
+             updatePagination(page);
+           }
 
-    // Show only the articles for this page
-    const start = (page - 1) * itemsPerPage;
-    const end = start + itemsPerPage;
-    articles.slice(start, end).forEach(article => {
-      article.style.display = "block";
-    });
+           // Function to create pagination buttons
+           function updatePagination(page) {
+             paginationContainer.innerHTML = "";
 
-    // Update pagination UI
-    updatePagination(page);
-  }
+             for (let i = 1; i <= totalPages; i++) {
+               const btn = document.createElement("button");
+               btn.textContent = i;
+               btn.className = `px-3 py-1 rounded-lg border text-sm font-medium transition
+                 ${i === page
+                   ? 'bg-blue-600 text-white border-blue-600'
+                   : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-100 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700'}`;
 
-  // Function to create pagination buttons
-  function updatePagination(page) {
-    paginationContainer.innerHTML = "";
+               btn.addEventListener("click", () => {
+                 currentPage = i;
+                 showPage(currentPage);
+                 window.scrollTo({ top: 0, behavior: 'smooth' });
+               });
 
-    for (let i = 1; i <= totalPages; i++) {
-      const btn = document.createElement("button");
-      btn.textContent = i;
-      btn.className = `px-3 py-1 rounded-lg border text-sm font-medium transition
-        ${i === page
-          ? 'bg-blue-600 text-white border-blue-600'
-          : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-100 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700'}`;
+               paginationContainer.appendChild(btn);
+             }
+           }
 
-      btn.addEventListener("click", () => {
-        currentPage = i;
-        showPage(currentPage);
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      });
-
-      paginationContainer.appendChild(btn);
-    }
-  }
-
-  // Initialize
-  showPage(currentPage);
-});
-</script>
-
+           // Initialize
+           showPage(currentPage);
+         });
+      </script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
       <script>
          tailwind = window.tailwind || {};
@@ -237,18 +221,18 @@ document.addEventListener("DOMContentLoaded", () => {
          });
       </script>
       <script>
-    const btn = document.getElementById('fullscreen-btn');
-    const icon = btn.querySelector('i');
+         const btn = document.getElementById('fullscreen-btn');
+         const icon = btn.querySelector('i');
 
-    btn.addEventListener('click', () => {
-      if (!document.fullscreenElement) {
-        document.documentElement.requestFullscreen();
-        icon.classList.replace('fa-expand', 'fa-compress');
-      } else {
-        document.exitFullscreen();
-        icon.classList.replace('fa-compress', 'fa-expand');
-      }
-    });
-  </script>
+         btn.addEventListener('click', () => {
+           if (!document.fullscreenElement) {
+             document.documentElement.requestFullscreen();
+             icon.classList.replace('fa-expand', 'fa-compress');
+           } else {
+             document.exitFullscreen();
+             icon.classList.replace('fa-compress', 'fa-expand');
+           }
+         });
+      </script>
    </body>
 </html>
