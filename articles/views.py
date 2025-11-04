@@ -1,3 +1,5 @@
+from itertools import count
+
 from django.shortcuts import render, redirect
 
 from .models import *
@@ -5,12 +7,16 @@ from .models import *
 # Create your views here.
 def index(request):
     data = {
+        "count_unread": len(Article.objects.filter(status=False)),
+        "count_read": len(Article.objects.filter(status=True)),
         "articles": Article.objects.all(),
     }
     return render(request, 'index.html', data)
 
 def articles_read(request):
     data = {
+        "count_unread": len(Article.objects.filter(status=False)),
+        "count_read": len(Article.objects.filter(status=True)),
         "articles": Article.objects.filter(status=True),
     }
 
@@ -19,6 +25,8 @@ def articles_read(request):
 def articles_unread(request):
     data = {
         "articles": Article.objects.filter(status=False),
+        "count_unread": len(Article.objects.filter(status=False)),
+        "count_read": len(Article.objects.filter(status=True)),
     }
 
     return render(request, 'index.html', data)
