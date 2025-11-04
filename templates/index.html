@@ -33,6 +33,8 @@
       <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
       <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.4.13/dist/tailwind.min.css" rel="stylesheet">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+      <link rel="shortcut icon" href="https://raw.githubusercontent.com/salohiddin-u/zedtrack/refs/heads/main/static/Adobe%20Express%20-%20file.png"
+          type="image/x-icon"/>
    </head>
    <body
       class="bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 min-h-screen selection:bg-blue-600 selection:text-white"
@@ -43,6 +45,7 @@
                class="max-w-3xl mx-auto px-4 flex justify-between items-center"
                >
                <h1 class="text-2xl font-semibold"><a href="/">Articles</a></h1>
+
                <button id="theme-toggle" type="button" class="p-2 ml-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-600 dark:text-gray-300">
                   <!-- Sun (light) -->
                   <svg id="theme-toggle-light-icon" class="hidden w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun">
@@ -64,6 +67,7 @@
             </div>
          </header>
       </div>
+
       <!-- Category Filter -->
       <div class="max-w-3xl mx-auto px-4 mb-6">
          <div class="flex flex-wrap gap-2 justify-center">
@@ -97,6 +101,9 @@
          </div>
       </div>
       <main class="max-w-3xl mx-auto px-4 space-y-6">
+          <p class="text-lg text-gray-700 dark:text-gray-400 leading-relaxed">
+               Unread: {{ count_unread }} | Read: {{ count_read }}
+            </p>
          {% for i in articles %}
          <a href="/{{ i.id }}/"
             data-id="{{ i.id }}"
@@ -134,7 +141,7 @@
          document.addEventListener("DOMContentLoaded", () => {
            const articles = Array.from(document.querySelectorAll(".article-item"));
            const paginationContainer = document.getElementById("pagination");
-           const itemsPerPage = 10;
+           const itemsPerPage = 5;
            let currentPage = 1;
            const totalPages = Math.ceil(articles.length / itemsPerPage);
 
