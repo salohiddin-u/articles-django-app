@@ -45,7 +45,6 @@
                class="max-w-3xl mx-auto px-4 flex justify-between items-center"
                >
                <h1 class="text-2xl font-semibold"><a href="/">Articles</a></h1>
-
                <button id="theme-toggle" type="button" class="p-2 ml-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-600 dark:text-gray-300">
                   <!-- Sun (light) -->
                   <svg id="theme-toggle-light-icon" class="hidden w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun">
@@ -78,13 +77,24 @@
             Main Menu
             </a>
             <!-- Mark as Read (Right) -->
-            <a href="/{{article.id}}/mark-as-read/" id="read-btn"
+            {% if article.status == False %}
+             <a href="/{{article.id}}/mark-as-read/" id="read-btn"
                class="inline-flex items-center px-6 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg
                hover:bg-blue-700 focus:ring-4 focus:ring-blue-300
                dark:bg-blue-500 dark:hover:bg-blue-600 dark:focus:ring-blue-800 transition">
             <i class="fa-regular fa-bookmark mr-2"></i>
             <span id="read-btn-text">Mark as Read</span>
             </a>
+             {% else %}
+              <a href="#" id=""
+               class="inline-flex items-center px-6 py-2 text-sm font-medium text-white bg-gray-600 rounded-lg
+               hover:bg-gray-700 focus:ring-4 focus:ring-gray-300
+               dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-800 transition">
+            <i class="fa-solid fa-bookmark mr-2"></i>
+
+            <span id="">Read</span>
+            </a>
+             {% endif %}
          </div>
          <article class="space-y-6">
             <!-- Title -->

@@ -7,6 +7,7 @@ class Article(models.Model):
     summary = models.TextField()
     text = models.TextField()
     status = models.BooleanField(default=False, null=True, blank=True)
+    read_time = models.DateTimeField(null=True, blank=True)
 
     def __str__(self):
         return self.title
